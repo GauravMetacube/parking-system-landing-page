@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- header section with a navbar -->
+    <section id="header">
+        <div class="image-container">
+            <img class="cover-img" src="files/metacube_logo.png" alt="metacube_logo">
+            <h1>Parking System</h1>
+        </div>
+        <nav>
+            <select class="navbar" onchange="navigateToSection(this)">
+                <option class="navItem" value="#employee-section">Add detail</option>
+                <option class="navItem" value="#vehicle-section">Add Vehicle</option>
+                <option class="navItem" value="#pricing">Pricing</option>
+                <option class="navItem" value="#feedback">Feedback</option>
+            </select>
+        </nav>
+    </section>
+    <section id="hero-section">
+        <div class="hero-content">
+            <h2 class="hero-title">Efficient Parking Solutions</h2>
+            <p class="hero-paragraph">Transform your parking experience with our advanced system that ensures
+                convenience, security, and efficiency.</p>
+        </div>
+    </section>
+
+    <!-- Employee detail section -->
+    <section id="employee-section">
+        <h1 class="expandable-heading" onclick="toggleSection('employee')">Employee Detail</h1>
+        <div class="expandable-content">
+            <form class="employee-form">
+                <div class="form-group">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <input type="text" id="gender" name="gender" placeholder="Gender" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Email id" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact Number:</label>
+                    <input type="text" id="contact" name="contact" placeholder="Contact Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- Employee's vehicle detail section -->
+    <section id="vehicle-section">
+        <h1 class="expandable-heading" onclick="toggleSection('vehicle')">Vehicle Detail</h1>
+        <div class="expandable-content">
+            <form class="vehicle-form">
+                <div class="form-group">
+                    <label for="company">Company Name:</label>
+                    <input type="text" id="company" name="company" placeholder="Company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-model">Vehicle Model:</label>
+                    <input type="text" id="vehicle-model" name="model" placeholder="Vehicle model" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-type">Vehicle Type:</label>
+                    <input type="text" id="vehicle-type" name="vehicle-type" placeholder="Vehicle type" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-number">Vehicle Number:</label>
+                    <input type="text" id="vehicle-number" name="vehicle-number" placeholder="Vehicle number" required>
+                </div>
+                <div class="form-group">
+                    <label for="emp-id">Employee ID:</label>
+                    <input type="text" id="emp-id" name="emp-id" placeholder="Employee id" required>
+                </div>
+                <div class="form-group">
+                    <label for="identification">Identification:</label>
+                    <input type="text" id="identification" name="identification" placeholder="Identification mark">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- feedback section -->
+    <section id="feedback">
+        <h1 class="feedback-title">Get in Touch</h1>
+        <form class="feedback-form">
+            <div class="form-group">
+                <input type="text" id="username" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email id" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="message" placeholder="Message" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </section>
+    <!-- pricing section -->
+    <section id="pricing">
+        <h1>Parking Prices</h1>
+        <table class="pricing-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Cycle</th>
+                    <th>Motorcycle</th>
+                    <th>Four Wheelers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Daily</td>
+                    <td>$5</td>
+                    <td>$10</td>
+                    <td>$20</td>
+                </tr>
+                <tr>
+                    <td>Monthly</td>
+                    <td>$100</td>
+                    <td>$200</td>
+                    <td>$500</td>
+                </tr>
+                <tr>
+                    <td>Yearly</td>
+                    <td>$500</td>
+                    <td>$1000</td>
+                    <td>$3500</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <script>
+
+        function toggleSection(sectionName) {
+            var expandableContent = document.getElementsByClassName('expandable-content');
+
+            if (sectionName === 'employee') {
+                expandableContent[0].classList.toggle('active');
+                expandableContent[1].classList.remove('active');
+            } else if (sectionName === 'vehicle') {
+                expandableContent[1].classList.toggle('active');
+                expandableContent[0].classList.remove('active');
+            }
+        }
+
+        function navigateToSection(selectElement) {
+            var selectedValue = selectElement.value;
+            if (selectedValue) {
+                // Smooth scroll to the selected section
+                document.querySelector(selectedValue).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+    </script>
+</body>
+
+</html>
