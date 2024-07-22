@@ -11,19 +11,30 @@
 <body>
     <!-- header section with a navbar -->
     <section id="header">
-        <div class="image-container">
-            <img class="cover-img" src="files/metacube_logo.png" alt="metacube_logo">
-            <h1>Parking System</h1>
-        </div>
-        <nav>
+        <nav class="full-screen">
+            <div class="navbar">
+                <a class="navItem" href="#header">Home</a>
+                <a class="navItem" href="#employee-section">Add Employee </a>
+                <a class="navItem" href="#vehicle-section">Add Vehicle</a>
+                <a class="navItem" href="#pricing">Pricing</a>
+                <a class="navItem" href="#feedback">Feedback</a>
+            </div>
+        </nav>
+        <nav class="mobile-screen">
             <select class="navbar" onchange="navigateToSection(this)">
-                <option class="navItem" value="#employee-section">Add detail</option>
+                <option class="navItem" value="#header">Home</option>
+                <option class="navItem" value="#employee-section">Add Employee </option>
                 <option class="navItem" value="#vehicle-section">Add Vehicle</option>
                 <option class="navItem" value="#pricing">Pricing</option>
                 <option class="navItem" value="#feedback">Feedback</option>
             </select>
         </nav>
+        <div class="image-container">
+            <img class="cover-img" src="files/metacube_logo.png" alt="metacube_logo">
+            <h1>Parking System</h1>
+        </div>
     </section>
+    
     <section id="hero-section">
         <div class="hero-content">
             <h2 class="hero-title">Efficient Parking Solutions</h2>
@@ -47,7 +58,11 @@
                 </div>
                 <div class="form-group">
                     <label for="gender">Gender:</label>
-                    <input type="text" id="gender" name="gender" placeholder="Gender" required>
+                    <select required>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>others</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
@@ -132,101 +147,83 @@
             </div>
         </form>
     </section>
+    
     <!-- pricing section -->
-    <!-- <section id="pricing">
-        <h1>Parking Prices</h1>
-        <table class="pricing-table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Cycle</th>
-                    <th>Motorcycle</th>
-                    <th>Four Wheelers</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Daily</td>
-                    <td>$5</td>
-                    <td>$10</td>
-                    <td>$20</td>
-                </tr>
-                <tr>
-                    <td>Monthly</td>
-                    <td>$100</td>
-                    <td>$200</td>
-                    <td>$500</td>
-                </tr>
-                <tr>
-                    <td>Yearly</td>
-                    <td>$500</td>
-                    <td>$1000</td>
-                    <td>$3500</td>
-                </tr>
-            </tbody>
-        </table>
-    </section> -->
     <section id="pricing">
         <h1>Parking Prices</h1>
+        <div class="pricing-table">
+            <div class="pricing-item">
+                <h2>Cycle</h2>
+                <div class="pricing-details">
+                    <div class="pricing-category">
+                        <h3>Daily </h3>
+                        <p> $5</p>
+                    </div>
+                    <div class="pricing-category">
+                        <h3>Monthly </h3>
+                        <p> $100</p>
+                    </div>
+                    <div class="pricing-category">
+                        <h3>Yearly </h3>
+                        <p> $500</p>
+                    </div>
+                </div>
+                <button class="purchase-button">Purchase Now</button>
+            </div>
         
-        <div class="pricing-item">
-            <h2>Cycle</h2>
-            <div class="pricing-details">
-                <div class="pricing-category">
-                    <h3>Daily</h3>
-                    <p>$5</p>
+            <div class="pricing-item">
+                <h2>Motorcycle</h2>
+                <div class="pricing-details">
+                    <div class="pricing-category">
+                        <h3>Daily </h3>
+                        <p> $10</p>
+                    </div>
+                    <div class="pricing-category">
+                        <h3>Monthly </h3>
+                        <p> $200</p>
+                    </div>
+                    <div class="pricing-category">
+                        <h3>Yearly </h3>
+                        <p> $1000</p>
+                    </div>
                 </div>
-                <div class="pricing-category">
-                    <h3>Monthly</h3>
-                    <p>$100</p>
-                </div>
-                <div class="pricing-category">
-                    <h3>Yearly</h3>
-                    <p>$500</p>
-                </div>
+                <button class="purchase-button">Purchase Now</button>
             </div>
-            <button class="purchase-button">Purchase Now</button>
-        </div>
-    
-        <div class="pricing-item">
-            <h2>Motorcycle</h2>
-            <div class="pricing-details">
-                <div class="pricing-category">
-                    <h3>Daily</h3>
-                    <p>$10</p>
+        
+            <div class="pricing-item">
+                <h2>Four Wheelers</h2>
+                <div class="pricing-details">
+                    <div class="pricing-category">
+                        <h3>Daily </h3>
+                        <p> $20</p>
+                    </div>
+                    <div class="pricing-category">
+                        <h3>Monthly </h3>
+                        <p> $500</p>
+                    </div>
+                    <div class="pricing-category">
+                        <h3>Yearly </h3>
+                        <p> $3500</p>
+                    </div>
                 </div>
-                <div class="pricing-category">
-                    <h3>Monthly</h3>
-                    <p>$200</p>
-                </div>
-                <div class="pricing-category">
-                    <h3>Yearly</h3>
-                    <p>$1000</p>
-                </div>
+                <button class="purchase-button">Purchase Now</button>
             </div>
-            <button class="purchase-button">Purchase Now</button>
-        </div>
-    
-        <div class="pricing-item">
-            <h2>Four Wheelers</h2>
-            <div class="pricing-details">
-                <div class="pricing-category">
-                    <h3>Daily</h3>
-                    <p>$20</p>
-                </div>
-                <div class="pricing-category">
-                    <h3>Monthly</h3>
-                    <p>$500</p>
-                </div>
-                <div class="pricing-category">
-                    <h3>Yearly</h3>
-                    <p>$3500</p>
-                </div>
-            </div>
-            <button class="purchase-button">Purchase Now</button>
         </div>
     </section>
-        
+    <footer>
+        <div class="footer-content">
+            <div class="organization-info">
+                <h3>Metacube Pvt. Ltd.</h3>
+                <p>Sitapura, Jaipur, Rajasthan</p>
+                <p>Phone: +123456789</p>
+                <p>Email: info@example.com</p>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Metacube Pvt. Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
     
     <script>
 
