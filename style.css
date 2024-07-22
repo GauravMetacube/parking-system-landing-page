@@ -166,7 +166,7 @@ section {
 .form-group input[type="text"], 
 .form-group input[type="email"], 
 .form-group input[type="password"] {
-    width: 100%;
+    width: 200%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -185,8 +185,28 @@ section {
 .form-group input[type="submit"]:hover {
     background-color: #555;
 }
-
-
+.body-container {
+    display: flex;
+    justify-content: center;
+}
+.add-space{
+    display: flex;
+    justify-content: space-between;
+}
+#feedback{
+    background-image: url('files/feedback-image.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: start;
+}
+.feedback-container{
+    display: flex;
+}
+#feedback h1{
+    font-size: 2em;
+    font-weight: 800;
+    color: white;
+}
 label {
     display: block;
     font-weight: bold;
@@ -194,7 +214,7 @@ label {
 }
 
 select {
-    width: 100%;
+    width: 200%;
     padding: 10px;
     font-size: 1em;
     border: 1px solid #ccc;
@@ -226,7 +246,7 @@ select:focus {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgb(13,70,240,0.2);
+    border: 1px solid #007bff;
     flex: 1;
     max-width: 300px;
     text-align: center;
@@ -240,18 +260,36 @@ select:focus {
 .pricing-details {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5px;
+}
+
+.pricing-circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b85f7;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    color: white;
+}
+.pricing-circle span{
+    font-weight: bolder;
 }
 
 .pricing-category {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 4px;
 }
 
 .pricing-category h3 {
     font-size: 1em;
+    font-weight: bold;
+}
+.pricing-category p{
+    color: #007bff;
     font-weight: bold;
 }
 
@@ -260,7 +298,7 @@ select:focus {
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    background-color: rgb(13, 70, 240);
+    background-color:#007bff;
     color:white;
     border: none;
     cursor: pointer;
@@ -269,7 +307,7 @@ select:focus {
 }
 
 .purchase-button:hover{
-    background-color: rgb(62, 89, 170);
+    background-color: #0c325a;
 }
 
 footer {

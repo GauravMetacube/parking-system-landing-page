@@ -46,106 +46,118 @@
     <!-- Employee detail section -->
     <section id="employee-section">
         <h1 class="expandable-heading" onclick="toggleSection('employee')">Employee Detail</h1>
-        <div class="expandable-content">
-            <form class="employee-form">
-                <div class="form-group">
-                    <label for="firstname">First Name:</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastname">Last Name:</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="gender">Gender:</label>
-                    <select required>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>others</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Email id" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password:</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"
-                        required>
-                </div>
-                <div class="form-group">
-                    <label for="contact">Contact Number:</label>
-                    <input type="text" id="contact" name="contact" placeholder="Contact Number" required>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Submit">
-                </div>
-            </form>
+        <div class="body-container">
+            <div class="expandable-content">
+                <form class="employee-form">
+                    <div class="form-group">
+                        <label for="firstname">First Name:</label>
+                        <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name:</label>
+                        <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select required>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>others</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Email id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password:</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact Number:</label>
+                        <input type="text" id="contact" name="contact" placeholder="Contact Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+            <div class="body-img">
+                <img src="files/new-employee.png" alt="">
+            </div>
         </div>
-
+        
     </section>
 
     <!-- Employee's vehicle detail section -->
     <section id="vehicle-section">
         <h1 class="expandable-heading" onclick="toggleSection('vehicle')">Vehicle Detail</h1>
-        <div class="expandable-content">
-            <form class="vehicle-form">
+        <divc class="body-container">
+            <div class="expandable-content">
+                <form class="vehicle-form">
+                    <div class="form-group">
+                        <label for="company">Company Name:</label>
+                        <input type="text" id="company" name="company" placeholder="Company name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle-model">Vehicle Model:</label>
+                        <input type="text" id="vehicle-model" name="model" placeholder="Vehicle model" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle-type">Vehicle Type:</label>
+                        <input type="text" id="vehicle-type" name="vehicle-type" placeholder="Vehicle type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle-number">Vehicle Number:</label>
+                        <input type="text" id="vehicle-number" name="vehicle-number" placeholder="Vehicle number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-id">Employee ID:</label>
+                        <input type="text" id="emp-id" name="emp-id" placeholder="Employee id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="identification">Identification:</label>
+                        <input type="text" id="identification" name="identification" placeholder="Identification mark">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+            <div class="body-img">
+                <img src="files/parking.png" alt="">
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- feedback section -->
+    <section id="feedback">
+        <h1 class="feedback-title">Get in Touch</h1>
+        <div class="feedback-container">
+            <form class="feedback-form">
                 <div class="form-group">
-                    <label for="company">Company Name:</label>
-                    <input type="text" id="company" name="company" placeholder="Company name" required>
+                    <input type="text" id="username" placeholder="Your name" required>
                 </div>
                 <div class="form-group">
-                    <label for="vehicle-model">Vehicle Model:</label>
-                    <input type="text" id="vehicle-model" name="model" placeholder="Vehicle model" required>
+                    <input type="email" id="email" placeholder="Email id" required>
                 </div>
                 <div class="form-group">
-                    <label for="vehicle-type">Vehicle Type:</label>
-                    <input type="text" id="vehicle-type" name="vehicle-type" placeholder="Vehicle type" required>
+                    <input type="text" id="subject" placeholder="Subject" required>
                 </div>
                 <div class="form-group">
-                    <label for="vehicle-number">Vehicle Number:</label>
-                    <input type="text" id="vehicle-number" name="vehicle-number" placeholder="Vehicle number" required>
-                </div>
-                <div class="form-group">
-                    <label for="emp-id">Employee ID:</label>
-                    <input type="text" id="emp-id" name="emp-id" placeholder="Employee id" required>
-                </div>
-                <div class="form-group">
-                    <label for="identification">Identification:</label>
-                    <input type="text" id="identification" name="identification" placeholder="Identification mark">
+                    <input type="text" id="message" placeholder="Message" required>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Submit">
                 </div>
             </form>
         </div>
-
-    </section>
-
-    <!-- feedback section -->
-    <section id="feedback">
-        <h1 class="feedback-title">Get in Touch</h1>
-        <form class="feedback-form">
-            <div class="form-group">
-                <input type="text" id="username" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-                <input type="email" id="email" placeholder="Email id" required>
-            </div>
-            <div class="form-group">
-                <input type="text" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group">
-                <input type="text" id="message" placeholder="Message" required>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit">
-            </div>
-        </form>
     </section>
     
     <!-- pricing section -->
@@ -155,6 +167,10 @@
             <div class="pricing-item">
                 <h2>Cycle</h2>
                 <div class="pricing-details">
+                    <div class="pricing-circle">
+                        <p><span>100$</span> /month</p>
+                       
+                    </div>
                     <div class="pricing-category">
                         <h3>Daily </h3>
                         <p> $5</p>
@@ -174,6 +190,9 @@
             <div class="pricing-item">
                 <h2>Motorcycle</h2>
                 <div class="pricing-details">
+                    <div class="pricing-circle">
+                        <p><span>200$</span> /month</p>
+                    </div>
                     <div class="pricing-category">
                         <h3>Daily </h3>
                         <p> $10</p>
@@ -193,6 +212,9 @@
             <div class="pricing-item">
                 <h2>Four Wheelers</h2>
                 <div class="pricing-details">
+                    <div class="pricing-circle">
+                        <p><span>500$</span> /month</p>
+                    </div>
                     <div class="pricing-category">
                         <h3>Daily </h3>
                         <p> $20</p>
@@ -229,13 +251,18 @@
 
         function toggleSection(sectionName) {
             var expandableContent = document.getElementsByClassName('expandable-content');
+            var bodyContainer = document.getElementsByClassName('body-container');
 
             if (sectionName === 'employee') {
                 expandableContent[0].classList.toggle('active');
                 expandableContent[1].classList.remove('active');
+                bodyContainer[0].classList.toggle('add-space');
+                bodyContainer[1].classList.remove('add-space');
             } else if (sectionName === 'vehicle') {
                 expandableContent[1].classList.toggle('active');
                 expandableContent[0].classList.remove('active');
+                bodyContainer[1].classList.toggle('add-space');
+                bodyContainer[0].classList.remove('add-space');
             }
         }
 
