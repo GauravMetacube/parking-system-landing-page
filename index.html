@@ -51,15 +51,16 @@
                 <form class="employee-form">
                     <div class="form-group">
                         <label for="firstname">First Name:</label>
-                        <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
+                        <input type="text" id="firstname" name="firstname" placeholder="" required>
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name:</label>
-                        <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+                        <input type="text" id="lastname" name="lastname" placeholder="" required>
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender:</label>
-                        <select required>
+                        <select name="gender" id="gender" required>
+                            <option value="">Select one</option>
                             <option>Male</option>
                             <option>Female</option>
                             <option>others</option>
@@ -67,20 +68,20 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" placeholder="Email id" required>
+                        <input type="email" class="email" name="email" placeholder="example@gmail.com" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <input type="password" id="password" name="password" placeholder="" required>
                     </div>
                     <div class="form-group">
                         <label for="confirm-password">Confirm Password:</label>
-                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"
+                        <input type="password" id="confirm-password" name="" placeholder=""
                             required>
                     </div>
                     <div class="form-group">
                         <label for="contact">Contact Number:</label>
-                        <input type="text" id="contact" name="contact" placeholder="Contact Number" required>
+                        <input type="text" id="contact" name="contact" placeholder="+911234567890" required>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Submit">
@@ -101,28 +102,33 @@
             <div class="expandable-content">
                 <form class="vehicle-form">
                     <div class="form-group">
-                        <label for="company">Company Name:</label>
-                        <input type="text" id="company" name="company" placeholder="Company name" required>
+                        <label for="company">Vehicle company name:</label>
+                        <input type="text" id="company" name="company" placeholder="" required>
                     </div>
                     <div class="form-group">
                         <label for="vehicle-model">Vehicle Model:</label>
-                        <input type="text" id="vehicle-model" name="model" placeholder="Vehicle model" required>
+                        <input type="text" id="vehicle-model" name="model" placeholder="" required>
                     </div>
                     <div class="form-group">
-                        <label for="vehicle-type">Vehicle Type:</label>
-                        <input type="text" id="vehicle-type" name="vehicle-type" placeholder="Vehicle type" required>
+                        <label for="Vehicle-type">Vehicle type:</label>
+                        <select name="vehicles" id="vehicles" required>
+                            <option value="">Select one</option>
+                            <option>2 wheelers</option>
+                            <option>4 wheelers (diesel)</option>
+                            <option>4 wheelers (petrol)</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="vehicle-number">Vehicle Number:</label>
-                        <input type="text" id="vehicle-number" name="vehicle-number" placeholder="Vehicle number" required>
+                        <input type="text" id="vehicle-number" name="vehicle-number" placeholder="" required>
                     </div>
                     <div class="form-group">
                         <label for="emp-id">Employee ID:</label>
-                        <input type="text" id="emp-id" name="emp-id" placeholder="Employee id" required>
+                        <input type="text" id="emp-id" name="emp-id" placeholder="" required>
                     </div>
                     <div class="form-group">
                         <label for="identification">Identification:</label>
-                        <input type="text" id="identification" name="identification" placeholder="Identification mark">
+                        <textarea type="textarea" id="identification" name="identification" placeholder="Identification mark" rows="4" cols="38"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Submit">
@@ -142,16 +148,16 @@
         <div class="feedback-container">
             <form class="feedback-form">
                 <div class="form-group">
-                    <input type="text" id="username" placeholder="Your name" required>
+                    <input type="text" id="username" placeholder="Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" placeholder="Email id" required>
+                    <input type="email" class="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
                     <input type="text" id="subject" placeholder="Subject" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="message" placeholder="Message" required>
+                    <textarea type="textarea" id="message" placeholder="Message" rows="4" cols="38" ></textarea>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Submit">
