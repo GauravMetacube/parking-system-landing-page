@@ -185,7 +185,7 @@ section {
     border-radius: 4px;
     box-sizing: border-box;
 }
-.form-group input[type="submit"] {
+.form-group input[type="button"] {
     background-color: #333;
     color: white;
     padding: 10px 20px;
@@ -202,7 +202,7 @@ textarea {
     border-radius: 4px;
     box-sizing: border-box;
 }
-.form-group input[type="submit"]:hover {
+.form-group input[type="button"]:hover {
     background-color: #555;
 }
 .body-container {

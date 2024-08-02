@@ -52,40 +52,43 @@
                     <div class="form-group">
                         <label for="firstname">First Name:</label>
                         <input type="text" id="firstname" name="firstname" placeholder="" required>
+                        <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="lastname">Last Name:</label>
                         <input type="text" id="lastname" name="lastname" placeholder="" required>
+                        <input type="button" value="Submit">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="gender">
                         <label for="gender">Gender:</label>
-                        <select name="gender" id="gender" required>
-                            <option value="">Select one</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>others</option>
+                        <select name="gender" >
+                            <option value="section">Select one</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="others">others</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input type="email" class="email" name="email" placeholder="example@gmail.com" required>
+                        <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" placeholder="" required>
+                        <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="confirm-password">Confirm Password:</label>
-                        <input type="password" id="confirm-password" name="" placeholder=""
-                            required>
+                        <input type="password" id="confirm-password" name="" placeholder="" required>
+                            <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="contact">Contact Number:</label>
                         <input type="text" id="contact" name="contact" placeholder="+911234567890" required>
+                        <input type="button" value="Submit">
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Submit">
-                    </div>
+                    <div class="success-message"></div>
                 </form>
             </div>
             <div class="body-img">
@@ -102,37 +105,40 @@
             <div class="expandable-content">
                 <form class="vehicle-form">
                     <div class="form-group">
-                        <label for="company">Vehicle company name:</label>
+                        <label for="company">Please Enter Vehicle company:</label>
                         <input type="text" id="company" name="company" placeholder="" required>
+                        <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="vehicle-model">Vehicle Model:</label>
                         <input type="text" id="vehicle-model" name="model" placeholder="" required>
+                        <input type="button" value="Submit">
                     </div>
-                    <div class="form-group">
-                        <label for="Vehicle-type">Vehicle type:</label>
+                    <div class="form-group" id= "vehicle-type">
+                        <label for="vehicle-type">Vehicle type:</label>
                         <select name="vehicles" id="vehicles" required>
                             <option value="">Select one</option>
-                            <option>2 wheelers</option>
-                            <option>4 wheelers (diesel)</option>
-                            <option>4 wheelers (petrol)</option>
+                            <option value="cycle">Cycle</option>
+                            <option value="motorcycle">Motorcycle</option>
+                            <option value="fourWheeler">4 wheeler</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="vehicle-number">Vehicle Number:</label>
                         <input type="text" id="vehicle-number" name="vehicle-number" placeholder="" required>
+                        <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="emp-id">Employee ID:</label>
                         <input type="text" id="emp-id" name="emp-id" placeholder="" required>
+                        <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="identification">Identification:</label>
                         <textarea type="textarea" id="identification" name="identification" placeholder="Identification mark" rows="4" cols="38"></textarea>
+                        <input type="button" value="Submit">
                     </div>
-                    <div class="form-group">
-                        <input type="submit" value="Submit">
-                    </div>
+                    <div class="success-message"></div>
                 </form>
             </div>
             <div class="body-img">
@@ -253,36 +259,7 @@
     </footer>
     
     
-    <script>
-
-        function toggleSection(sectionName) {
-            var expandableContent = document.getElementsByClassName('expandable-content');
-            var bodyContainer = document.getElementsByClassName('body-container');
-
-            if (sectionName === 'employee') {
-                expandableContent[0].classList.toggle('active');
-                expandableContent[1].classList.remove('active');
-                bodyContainer[0].classList.toggle('add-space');
-                bodyContainer[1].classList.remove('add-space');
-            } else if (sectionName === 'vehicle') {
-                expandableContent[1].classList.toggle('active');
-                expandableContent[0].classList.remove('active');
-                bodyContainer[1].classList.toggle('add-space');
-                bodyContainer[0].classList.remove('add-space');
-            }
-        }
-
-        function navigateToSection(selectElement) {
-            var selectedValue = selectElement.value;
-            if (selectedValue) {
-                // Smooth scroll to the selected section
-                document.querySelector(selectedValue).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
