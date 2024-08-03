@@ -1,7 +1,13 @@
+var expandableContent = document.getElementsByClassName('expandable-content');
+var bodyContainer = document.getElementsByClassName('body-container');
+
+
+const employeeDetail = {};
+const vehicleDetail = {};
+   
+
 
 function toggleSection(sectionName) {
-    var expandableContent = document.getElementsByClassName('expandable-content');
-    var bodyContainer = document.getElementsByClassName('body-container');
 
     if (sectionName === 'employee') {
         expandableContent[0].classList.toggle('active');
@@ -27,6 +33,10 @@ function navigateToSection(selectElement) {
 }
 
 
+    let passwordToCheck=null;
+    let strength=0;
+    let empName = ""; //just initialising
+
     function validateName(name){
         const fullNameRegex = /^[a-zA-Z ]{2,}$/;
         return fullNameRegex.test(name);
@@ -38,12 +48,18 @@ function navigateToSection(selectElement) {
     }
     
     function validatePassword(password) {
+        passwordToCheck=password;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         return passwordRegex.test(password);
     }
+
+    function validateConfirmPassword(confirmPassword){
+        if(confirmPassword===passwordToCheck) return true;
+        else return false;
+    }
     
     function checkPasswordStrength(password) {
-        let strength = 0;
+        
         if (password.length >= 8) strength++;
         if (/[a-z]/.test(password)) strength++;
         if (/[A-Z]/.test(password)) strength++;
@@ -53,59 +69,84 @@ function navigateToSection(selectElement) {
     }
 
     function validateContact(contact){
-        const contactRegex = /^[0-9 ]{8,}$/;
+        const contactRegex = /^[\d]{8,}$/;
         return contactRegex.test(contact);
     }
 
+    function validateText(text){
+        const textRegex = /^[a-zA-Z0-9., ]{2,}$/;
+        return textRegex.test(text);
+    }
+    function validateEmpId(empId){
+        const empIdRegex =/^[\d]{4}$/;
+        return empIdRegex.test(empId);
+    }
+
+    function validateVehicleNumber(number){
+        const numberRegex = /^[A-Z0-9\-]{4,}$/;
+        return numberRegex.test(number);
+    }
+
+    // we will only take numeric string for now
+    const numericString = '0123456789';
+    function generateRandomString(length, chars) {
+        var result = '';
+        for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+        return result;
+    }
 
 
-
-function validateEmployeeDetails(currentField,nextField,name){
+function validateEmployeeDetails(currentField,nextField){
     console.log(currentField.children[0].htmlFor);
     console.log(currentField.children[1].value);
-    console.log(nextField.children[0].innerHTML);
+ 
 
     switch(currentField.children[0].htmlFor){
 
         case 'firstname':  if(validateName(currentField.children[1].value)){
-            nextField.children[0].innerHTML='Welcome '+ name + ', Please enter your last name'
+            empName=currentField.children[1].value;
+            employeeDetail.firstName=currentField.children[1].value;
+            nextField.children[0].innerHTML='Welcome '+ empName + ', Please enter your last name';
             return true;
         }
         else return false;
                            
         case 'lastname' : if(validateName(currentField.children[1].value)){
-            nextField.children[0].innerHTML='Hi '+ name +', Can I know your Gender';
+            employeeDetail.lastName=currentField.children[1].value;
+            nextField.children[0].innerHTML='Hi '+ empName +', Can I know your Gender';
             return true;
         }
         else return false;
                           
         case 'gender' : 
-             nextField.children[0].innerHTML='Hi '+ name + ', Enter your Email';
+            employeeDetail.gender=currentField.children[1].value;
+             nextField.children[0].innerHTML='Hi '+ empName + ', Enter your Email';
              return true;
        
                            
         case 'email' : if(validateEmail(currentField.children[1].value)){
-            nextField.children[0].innerHTML='Hi '+name+ ', Enter a password';
+            employeeDetail.email=currentField.children[1].value;
+            nextField.children[0].innerHTML='Hi '+empName+ ', Enter a password';
             return true;
         }
         else return false;
        
         case 'password' : if(validatePassword(currentField.children[1].value)){
-            nextField.children[0].innerHTML='Hi '+ name+ 'Confirm your password';
+            employeeDetail.password=currentField.children[1].value;
+            nextField.children[0].innerHTML='Hi '+ empName+ 'Confirm your password';
             return true;
         }
         else return false;
     
                         
-        case 'confirm-password': if(validatePassword(currentField.children[1].value)){
-            nextField.children[0].innerHTML='Hi '+ name+ ', Enter your phone number';
+        case 'confirm-password': if(validateConfirmPassword(currentField.children[1].value)){
+            nextField.children[0].innerHTML='Hi '+ empName+ ', Enter your phone number';
             return true;
         }
         else return false;
     
         case 'contact':  if(validateContact(currentField.children[1].value)){
-            // nextField.children[0].innerHTML='Registered';
-            
+            employeeDetail.contact=currentField.children[1].value;            
             return true;
         }
         else return false;
@@ -119,37 +160,61 @@ function validateEmployeeDetails(currentField,nextField,name){
 function validateVehicleDetails(currentField,nextField){
     console.log(currentField.children[0].htmlFor);
     console.log(currentField.children[1].value);
-    console.log(nextField.children[0].innerHTML);
+    
 
     switch(currentField.children[0].htmlFor){
 
-        case 'company' : 
+        case 'company' : if(validateText(currentField.children[1].value)){
+            vehicleDetail.company=currentField.children[1].value;
             nextField.children[0].innerHTML='Please Enter vehicle-model ';
             return true;
+        }
+        else return false;  
+           
        
 
-        case 'vehicle-model':  
+        case 'vehicle-model': if(validateText(currentField.children[1].value)) {
+            vehicleDetail.model=currentField.children[1].value;
             nextField.children[0].innerHTML='Select Vehicle Type';
             return true;
+        }
+        else return false;
+            
        
                            
-        case 'vehicle-type' : 
+        case 'vehicle-type' : if(validateText(currentField.children[1].value)){
+            vehicleDetail.type=currentField.children[1].value;
             nextField.children[0].innerHTML='Enter vehicle Number';
             return true;
+        }
+        else return false;
+            
        
                           
-        case 'vehicle-number' : 
-             nextField.children[0].innerHTML='Enter Employee Id ';
-             return true;
+        case 'vehicle-number' : if(validateVehicleNumber(currentField.children[1].value)){
+            vehicleDetail.number=currentField.children[1].value;
+            nextField.children[0].innerHTML='Enter Employee Id ';
+            return true;
+        }
+        else return false;
+             
         
                            
-        case 'emp-id' : 
+        case 'emp-id' : if(validateEmpId(currentField.children[1].value)){
+            vehicleDetail.empId=currentField.children[1].value;
             nextField.children[0].innerHTML='Provide any identification';
             return true;
+        }
+        else return false;
+           
 
                         
-        case 'identification': 
+        case 'identification': if(validateText(currentField.children[1].value)){
+            vehicleDetail.identification=currentField.children[1].value;
             return true;
+        }
+        else return false;
+            
         
         default: return false;
         
@@ -168,35 +233,47 @@ function displayEmployeeForm(){
         formGroup[i].style.display='none';
     }
 
-    let empName = formGroup[0].children[1].value; //just initialising
+    
     for(let i=0,j=0;i<formGroup.length && j<input.length;i++){
         
         if(formGroup[i].id!='gender') {
 
             input[j].addEventListener('click',() => {
               
-               if(formGroup[i].children[0].htmlFor ==='firstname') {
-                    if (validateEmployeeDetails(formGroup[i],formGroup[i+1],empName)){
-                        empName = formGroup[i].children[1].value;
-                        formGroup[i+1].style.display='block';
-                        formGroup[i].style.display='none';
-                    }
-               }else if(i+1<formGroup.length){
-                    if (validateEmployeeDetails(formGroup[i],formGroup[i+1],empName)){
+               if(i+1<formGroup.length){
+                    if (validateEmployeeDetails(formGroup[i],formGroup[i+1])){
                         formGroup[i+1].style.display='block';
                         formGroup[i].style.display='none';
                     }
                }
                else{
-                alert('successfully registered');
+                if(validateEmployeeDetails(formGroup[i])){
+                    expandableContent[0].classList.toggle('active');
+                    bodyContainer[0].classList.toggle('add-space');
+                    alert(`Successfully Registered!`);
+                }
                }
                 
             });
-            
             console.log("input field "+j);
-            j++;
+             j++;
+        
+        }
 
-            
+        if(formGroup[i].children[1].id=='password'){
+            formGroup[i].children[1].addEventListener('input',()=>{
+                const password = formGroup[i].children[1].value;
+                if(checkPasswordStrength(password)>=5){
+                    formGroup[i].children[1].style.border = '2px solid green'
+                }
+                else if(checkPasswordStrength(password)>=4){
+                    formGroup[i].children[1].style.border = '2px solid orange'
+                } 
+                else{
+                    formGroup[i].children[1].style.border= '2px solid red';
+                }
+                
+            });
         }
 
         console.log("form-group field "+i);
@@ -239,7 +316,12 @@ function displayVehicleForm(){
                         
                     }
                     else{
-                        alert('successfully registered');
+                        if(validateVehicleDetails(formGroup[i])){
+                            vehicleDetail.tokenNumber = generateRandomString(4,numericString);
+                            expandableContent[1].classList.toggle('active');
+                            bodyContainer[1].classList.toggle('add-space');
+                           alert('successfully registered, Your token number is '+vehicleDetail.tokenNumber);
+                      }    
                     }
                 });
                 j++;

@@ -189,6 +189,7 @@ section {
     background-color: #333;
     color: white;
     padding: 10px 20px;
+    margin-top: 5px;
     font-size: 16px;
     border: none;
     border-radius: 4px;
@@ -211,8 +212,15 @@ textarea {
 }
 .add-space{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
 }
+
+/* changing according to javascript */
+.body-img img{
+    width: 50%;
+}
+
 #feedback{
     background-image: url('files/feedback-image.jpg');
     background-size: cover;
