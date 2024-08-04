@@ -260,6 +260,17 @@ select:focus {
 #pricing {
     text-align: center;
     padding: 50px 0;
+    padding-bottom: 7%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#pricing>h1{
+    background-color: #333;
+    color: #f0f0f0;
+    padding: 0.8rem;
+    margin: 0 1.5rem;
 }
 
 .pricing-table {
@@ -336,6 +347,19 @@ select:focus {
 
 .purchase-button:hover{
     background-color: #0c325a;
+}
+
+.currency-convertor{
+    display: none;
+}
+
+.currency-convertor select{
+    width: 20%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
 }
 
 footer {

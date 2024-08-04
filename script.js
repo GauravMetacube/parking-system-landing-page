@@ -34,6 +34,8 @@ function navigateToSection(selectElement) {
     }
 }
 
+// validate inputs
+
 function validateFirstName(name) {
     const fullNameRegex = /^[a-zA-Z ]{2,}$/;
     return fullNameRegex.test(name);
@@ -87,6 +89,8 @@ function validateVehicleNumber(number) {
     const numberRegex = /^[A-Z0-9\-]{4,}$/;
     return numberRegex.test(number);
 }
+
+
 
 // we will only take numeric string for now
 const numericString = '0123456789';
@@ -190,6 +194,10 @@ function validateEmployeeDetails(currentField, nextField) {
 }
 
 
+// we will validate current field and update the label of next field if current field gets validated
+// at the same time we will store the details into vehicle object
+// here children[0] is label of that form
+// and children[1] is the input of that form
 function validateVehicleDetails(currentField, nextField) {
     console.log(currentField.children[0].htmlFor);
     console.log(currentField.children[1].value);
@@ -268,6 +276,7 @@ function validateVehicleDetails(currentField, nextField) {
     }
 }
 
+//adding event listener to forms so that they appear one after the other after validation.
 function displayEmployeeForm() {
     const employee = document.querySelector('#employee-section');
     const formGroup = employee.querySelectorAll('.form-group');
@@ -339,6 +348,7 @@ function displayEmployeeForm() {
 displayEmployeeForm();
 
 
+//adding event listener to forms so that they appear one after the other after validation.
 function displayVehicleForm() {
     const vehicle = document.querySelector('#vehicle-section');
     const formGroup = vehicle.querySelectorAll('.form-group');
@@ -386,6 +396,7 @@ function displayVehicleForm() {
             select.addEventListener('change', () => {
                 if (validateVehicleDetails(formGroup[i], formGroup[i + 1])) {
                     pricingItem[formGroup[i].children[1].selectedIndex - 1].style.display='block';
+                    updateCurrency(pricingItem[formGroup[i].children[1].selectedIndex - 1]);
                     formGroup[i + 1].style.display = 'block';
                     formGroup[i].style.display = 'none';
                 }
@@ -397,5 +408,61 @@ function displayVehicleForm() {
     }
 
 }
-
 displayVehicleForm();
+
+
+
+
+
+function updateCurrency(pricingItem){
+
+    const currencyMenuDiv = document.querySelector('.currency-convertor');
+    const currencyMenu = document.querySelector('#currency');
+    const pricingCategory = pricingItem.querySelectorAll('.pricing-category');
+
+    //will show the conversion menu only when pricing item is visible
+    currencyMenuDiv.style.display='block';
+
+    // Include api for currency change
+    const api = "https://api.exchangerate-api.com/v4/latest/USD";
+    let resultTo;
+    let resultFrom='USD';
+    
+
+    console.log(pricingCategory);
+    currencyMenu.addEventListener('change',(e)=>{
+        resultTo=e.target.value;
+        console.log(e.target.value);
+        getResults();
+        console.log('event listener success');
+    });
+
+    // Function getresults
+    function getResults() {
+        fetch(`${api}`)
+            .then(currency => {
+                return currency.json();
+            }).then(convertTo);
+            console.log('fetch statement success');
+    }
+
+    function convertTo(currency){
+
+        let fromRate = currency.rates[resultFrom];
+        console.log(fromRate);
+        let toRate = currency.rates[resultTo];
+        console.log(toRate);
+        for(let i=0;i<pricingCategory.length;i++){
+           const price= pricingCategory[i].children[1].innerHTML;
+           pricingCategory[i].children[1].innerHTML=Math.round(((toRate / fromRate) *price));
+           console.log(price);
+        }
+        resultFrom=resultTo; //update the currency 
+     console.log('convert to success');   
+    }
+
+}
+
+
+
+
