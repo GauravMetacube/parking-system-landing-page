@@ -1,6 +1,9 @@
 // two body container and two expandable content employee detail and vehicle detail
-var expandableContent = document.getElementsByClassName('expandable-content');
-var bodyContainer = document.getElementsByClassName('body-container');
+const expandableContent = document.getElementsByClassName('expandable-content');
+const bodyContainer = document.getElementsByClassName('body-container');
+// navItem to navigate to section
+const navItem = document.querySelectorAll('.mobile-screen .navItem');
+
 
 // objects of employee and vehicle 
 const employeeDetail = {};
@@ -42,7 +45,7 @@ function validateFirstName(name) {
 }
 
 function validateLastName(name) {
-    if(name.length==0) return true;
+    if (name.length == 0) return true;
     const lastNameRegex = /^[a-zA-Z ]+$/;
     return lastNameRegex.test(name);
 }
@@ -62,7 +65,7 @@ function validateConfirmPassword(confirmPassword) {
 }
 
 function checkPasswordStrength(password) {
-    let strength=0;
+    let strength = 0;
     if (password.length >= 8) strength++;
     if (/[a-z]/.test(password)) strength++;
     if (/[A-Z]/.test(password)) strength++;
@@ -94,13 +97,12 @@ function validateVehicleNumber(number) {
 
 // we will only take numeric string for now
 const numericString = '0123456789';
+//generate random string for token number
 function generateRandomString(length, chars) {
     var result = '';
     for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
 }
-
-
 
 // we will validate current field and update the label of next field if current field gets validated
 // at the same time we will store the details into employee object
@@ -114,28 +116,28 @@ function validateEmployeeDetails(currentField, nextField) {
     switch (currentField.children[0].htmlFor) {
 
         case 'firstname':
-            if(currentField.children[1].value==='') alert("Field cannot be empty");
+            if (currentField.children[1].value === '') alert("Field cannot be empty");
             if (validateFirstName(currentField.children[1].value)) {
                 empName = currentField.children[1].value;
                 employeeDetail.firstName = currentField.children[1].value;
                 nextField.children[0].innerHTML = 'Welcome ' + empName + ',  Please enter your last name';
                 return true;
             }
-            else{
+            else {
                 currentField.children[0].innerHTML = 'Invalid FirstName... Please enter again ';
                 return false;
-            } 
+            }
 
-        case 'lastname': 
+        case 'lastname':
             if (validateLastName(currentField.children[1].value)) {
-            employeeDetail.lastName = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Hi ' + empName + ', Can I know your Gender';
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid LastName... Please enter again ';
-            return false;
-        } 
+                employeeDetail.lastName = currentField.children[1].value;
+                nextField.children[0].innerHTML = 'Hi ' + empName + ', Can I know your Gender';
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid LastName... Please enter again ';
+                return false;
+            }
 
         case 'gender':
             employeeDetail.gender = currentField.children[1].value;
@@ -143,50 +145,51 @@ function validateEmployeeDetails(currentField, nextField) {
             return true;
 
 
-        case 'email': 
-            if(currentField.children[1].value==='') alert("Field cannot be empty");
+        case 'email':
+            if (currentField.children[1].value === '') alert("Field cannot be empty");
             if (validateEmail(currentField.children[1].value)) {
-            employeeDetail.email = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter a password';
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid Email... Please enter again ';
-            return false;
-        } 
+                employeeDetail.email = currentField.children[1].value;
+                nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter a password';
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid Email... Please enter again ';
+                return false;
+            }
 
-        case 'password': 
-            if(currentField.children[1].value==='') alert("Field cannot be empty");
+        case 'password':
+            if (currentField.children[1].value === '') alert("Field cannot be empty");
             if (validatePassword(currentField.children[1].value)) {
-            employeeDetail.password = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Hi ' + empName + 'Confirm your password';
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid password... Please enter again ';
-            return false;
-        } 
+                employeeDetail.password = currentField.children[1].value;
+                nextField.children[0].innerHTML = 'Hi ' + empName + 'Confirm your password';
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid password... Please enter again ';
+                return false;
+            }
 
 
-        case 'confirm-password': if (validateConfirmPassword(currentField.children[1].value)) {
-            nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter your phone number';
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Password do not match, please try again ';
-            return false;
-        } 
+        case 'confirm-password':
+            if (validateConfirmPassword(currentField.children[1].value)) {
+                nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter your phone number';
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Password do not match, please try again ';
+                return false;
+            }
 
-        case 'contact': 
-            if(currentField.children[1].value==='') alert("Field cannot be empty");
+        case 'contact':
+            if (currentField.children[1].value === '') alert("Field cannot be empty");
             if (validateContact(currentField.children[1].value)) {
-            employeeDetail.contact = currentField.children[1].value;
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid phone number... Please enter again ';
-            return false;
-        } 
+                employeeDetail.contact = currentField.children[1].value;
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid phone number... Please enter again ';
+                return false;
+            }
 
         default: return false;
 
@@ -205,70 +208,77 @@ function validateVehicleDetails(currentField, nextField) {
 
     switch (currentField.children[0].htmlFor) {
 
-        case 'company': if (validateText(currentField.children[1].value)) {
-            vehicleDetail.company = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Please Enter vehicle-model ';
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid Company name... Please enter again ';
-            return false;
-        } 
+        case 'company':
+            if (validateText(currentField.children[1].value)) {
+                vehicleDetail.company = currentField.children[1].value;
+                nextField.children[0].innerHTML = 'Please Enter vehicle-model ';
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid Company name... Please enter again ';
+                return false;
+            }
 
 
 
-        case 'vehicle-model': if (validateText(currentField.children[1].value)) {
-            vehicleDetail.model = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Select Vehicle Type';
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid vehicle model... Please enter again ';
-            return false;
-        } 
+        case 'vehicle-model':
+            if (validateText(currentField.children[1].value)) {
+                vehicleDetail.model = currentField.children[1].value;
+                nextField.children[0].innerHTML = 'Select Vehicle Type';
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid vehicle model... Please enter again ';
+                return false;
+            }
 
 
 
-        case 'vehicle-type': if (validateText(currentField.children[1].value)) {
-            vehicleDetail.type = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Enter vehicle Number';
-            return true;
-        }
-        else return false;
+        case 'vehicle-type':
+            if (validateText(currentField.children[1].value)) {
+                vehicleDetail.type = currentField.children[1].value;
+                nextField.children[0].innerHTML = 'Enter vehicle Number';
+                return true;
+            }
+            else return false;
 
 
 
-        case 'vehicle-number': if (validateVehicleNumber(currentField.children[1].value)) {
-            vehicleDetail.number = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Enter Employee Id ';
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid vehicle number... Please enter again ';
-            return false;
-        } 
+        case 'vehicle-number':
+            if (validateVehicleNumber(currentField.children[1].value)) {
+                vehicleDetail.number = currentField.children[1].value;
+                nextField.children[0].innerHTML = 'Enter Employee Id ';
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid vehicle number... Please enter again ';
+                return false;
+            }
 
 
-        case 'emp-id': if (validateEmpId(currentField.children[1].value)) {
-            vehicleDetail.empId = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Provide any identification';
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid Employee id... Please enter again ';
-            return false;
-        } 
+        case 'emp-id':
+            if (validateEmpId(currentField.children[1].value)) {
+                vehicleDetail.empId = currentField.children[1].value;
+                employeeDetail.empId=  currentField.children[1].value;
+                nextField.children[0].innerHTML = 'Provide any identification';
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid Employee id... Please enter again ';
+                return false;
+            }
 
 
 
-        case 'identification': if (validateText(currentField.children[1].value)) {
-            vehicleDetail.identification = currentField.children[1].value;
-            return true;
-        }
-        else{
-            currentField.children[0].innerHTML = 'Invalid Identification... Please enter again ';
-            return false;
-        } 
+        case 'identification':
+            if (validateText(currentField.children[1].value)) {
+                vehicleDetail.identification = currentField.children[1].value;
+                return true;
+            }
+            else {
+                currentField.children[0].innerHTML = 'Invalid Identification... Please enter again ';
+                return false;
+            }
 
 
         default: return false;
@@ -276,7 +286,7 @@ function validateVehicleDetails(currentField, nextField) {
     }
 }
 
-//adding event listener to forms so that they appear one after the other after validation.
+//adding event listener to employee forms so that they appear one after the other after validation.
 function displayEmployeeForm() {
     const employee = document.querySelector('#employee-section');
     const formGroup = employee.querySelectorAll('.form-group');
@@ -316,13 +326,31 @@ function displayEmployeeForm() {
 
         }
 
+        
+
         if (formGroup[i].children[1].id == 'password') {
-            formGroup[i].children[1].addEventListener('input', () => {
-                const password = formGroup[i].children[1].value;
-                if (checkPasswordStrength(password) >= 5) {
+            formGroup[i].children[1].addEventListener('change', (e) => {
+                // const password = formGroup[i].children[1].value;
+                if (checkPasswordStrength(e.target.value) >= 5) {
                     formGroup[i].children[1].style.border = '2px solid green'
                 }
-                else if (checkPasswordStrength(password) >= 4) {
+                else if (checkPasswordStrength(e.target.value) >= 4) {
+                    formGroup[i].children[1].style.border = '2px solid orange'
+                }
+                else {
+                    formGroup[i].children[1].style.border = '2px solid red';
+                }
+
+            });
+        }
+
+        if (formGroup[i].children[1].id == 'password') {
+            formGroup[i].children[1].addEventListener('change', (e) => {
+                // const password = formGroup[i].children[1].value;
+                if (checkPasswordStrength(e.target.value) >= 5) {
+                    formGroup[i].children[1].style.border = '2px solid green'
+                }
+                else if (checkPasswordStrength(e.target.value) >= 4) {
                     formGroup[i].children[1].style.border = '2px solid orange'
                 }
                 else {
@@ -348,7 +376,7 @@ function displayEmployeeForm() {
 displayEmployeeForm();
 
 
-//adding event listener to forms so that they appear one after the other after validation.
+//adding event listener to vehicle forms so that they appear one after the other after validation.
 function displayVehicleForm() {
     const vehicle = document.querySelector('#vehicle-section');
     const formGroup = vehicle.querySelectorAll('.form-group');
@@ -356,14 +384,14 @@ function displayVehicleForm() {
     const select = vehicle.querySelector('select');
     const options = select.querySelectorAll('option');
     const pricingItem = document.querySelectorAll('#pricing .pricing-item');
-    
+
 
     for (let i = 1; i < formGroup.length; i++) {
         formGroup[i].style.display = 'none';
     }
 
-    for(let i=0;i< pricingItem.length;i++){
-        pricingItem[i].style.display= 'none';
+    for (let i = 0; i < pricingItem.length; i++) {
+        pricingItem[i].style.display = 'none';
     }
 
     for (let i = 0, j = 0; i < formGroup.length && j < input.length; i++) {
@@ -379,12 +407,14 @@ function displayVehicleForm() {
                     }
 
                 }
+                // last form group when the user enters last field
                 else {
                     if (validateVehicleDetails(formGroup[i])) {
                         vehicleDetail.tokenNumber = generateRandomString(4, numericString);
                         expandableContent[1].classList.toggle('active');
                         bodyContainer[1].classList.toggle('add-space');
-                        alert('successfully registered, Your token number is ' + vehicleDetail.tokenNumber);
+                        successMessage=`Successfully registered your token number is : ${vehicleDetail.tokenNumber}`;
+                        successAlert(successMessage);
                     }
                 }
             });
@@ -395,8 +425,9 @@ function displayVehicleForm() {
         if (formGroup[i].id == 'vehicle-type') {
             select.addEventListener('change', () => {
                 if (validateVehicleDetails(formGroup[i], formGroup[i + 1])) {
-                    pricingItem[formGroup[i].children[1].selectedIndex - 1].style.display='block';
+                    pricingItem[formGroup[i].children[1].selectedIndex - 1].style.display = 'block';
                     updateCurrency(pricingItem[formGroup[i].children[1].selectedIndex - 1]);
+                    purchaseItem(pricingItem[formGroup[i].children[1].selectedIndex - 1]);
                     formGroup[i + 1].style.display = 'block';
                     formGroup[i].style.display = 'none';
                 }
@@ -414,24 +445,26 @@ displayVehicleForm();
 
 
 
-function updateCurrency(pricingItem){
+function updateCurrency(pricingItem) {
 
     const currencyMenuDiv = document.querySelector('.currency-convertor');
     const currencyMenu = document.querySelector('#currency');
     const pricingCategory = pricingItem.querySelectorAll('.pricing-category');
-
+    const pricingType = pricingItem.querySelector('.pricing-type');
+    const pricingOption = pricingType.querySelectorAll('option');
+    const pricingTenure = ['Daily','Monthly','Yearly'];
     //will show the conversion menu only when pricing item is visible
-    currencyMenuDiv.style.display='block';
+    currencyMenuDiv.style.display = 'block';
 
     // Include api for currency change
     const api = "https://api.exchangerate-api.com/v4/latest/USD";
     let resultTo;
-    let resultFrom='USD';
-    
+    let resultFrom = 'USD';
+
 
     console.log(pricingCategory);
-    currencyMenu.addEventListener('change',(e)=>{
-        resultTo=e.target.value;
+    currencyMenu.addEventListener('change', (e) => {
+        resultTo = e.target.value;
         console.log(e.target.value);
         getResults();
         console.log('event listener success');
@@ -443,26 +476,106 @@ function updateCurrency(pricingItem){
             .then(currency => {
                 return currency.json();
             }).then(convertTo);
-            console.log('fetch statement success');
+        console.log('fetch statement success');
     }
 
-    function convertTo(currency){
+    function convertTo(currency) {
 
         let fromRate = currency.rates[resultFrom];
         console.log(fromRate);
         let toRate = currency.rates[resultTo];
         console.log(toRate);
-        for(let i=0;i<pricingCategory.length;i++){
-           const price= pricingCategory[i].children[1].innerHTML;
-           pricingCategory[i].children[1].innerHTML=Math.round(((toRate / fromRate) *price));
-           console.log(price);
+        for (let i = 0; i < pricingCategory.length; i++) {
+            const price = pricingCategory[i].children[1].innerHTML;
+            pricingCategory[i].children[1].innerHTML = Math.round(((toRate / fromRate) * price));
+            convertSymbols(resultTo, i);
+            pricingOption[i].innerHTML=pricingTenure[i]+" "+pricingCategory[i].children[1].innerHTML+" "+pricingCategory[i].children[2].innerHTML;
+            console.log(price);
         }
-        resultFrom=resultTo; //update the currency 
-     console.log('convert to success');   
+
+        
+        resultFrom = resultTo; //update the currency 
+        console.log('convert to success');
     }
+
+    function convertSymbols(resultTo, i) {
+        switch (resultTo) {
+            case 'USD':
+                pricingCategory[i].children[2].innerHTML = '$';
+                break;
+            case 'INR': pricingCategory[i].children[2].innerHTML = '&#8377;';
+                break;
+            case 'JPY': pricingCategory[i].children[2].innerHTML = '&#165;';
+                break;
+            default:
+                break;
+        }
+    }
+   
 
 }
 
 
+function successAlert(successMessage){
+     // Get the modal
+    var modal = document.querySelector("#myModal");
+    modal.style.display = "block";
+   
+    const modelContent = modal.querySelector('.modal-content');
+
+    modelContent.children[1].innerHTML=successMessage;
+    
+    
+    // Get the <span> element that closes the modal
+    var span = document.querySelector(".close");
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+       modal.style.display = "none";
+       navigateToSection(navItem[3]); //navigate to pricing section
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none"; 
+        navigateToSection(navItem[3]); //navigate to pricing section
+     }
+    }
+}
+
+function purchaseItem(selectedItem){
+    
+    // get the pricing select menu
+    const pricingOption = selectedItem.querySelector('#pricingOption');
+    console.log(pricingOption);
+
+    const pricingCategory = selectedItem.querySelectorAll('.pricing-category');
+    
+    //get the purchase button
+    const purchaseBtn = selectedItem.querySelector('.purchase-button');
+    console.log(purchaseBtn);
 
 
+   let checkoutBill = "";
+   let targetValue;
+
+    pricingOption.addEventListener('change',(e)=>{
+        console.log(pricingOption.selectedIndex);
+        targetValue=e.target.value;
+        checkoutBill=`Hey ${employeeDetail.firstName}, <br> Your total Bill is ${pricingCategory[pricingOption.selectedIndex].children[1].innerHTML} ${pricingCategory[pricingOption.selectedIndex].children[2].innerHTML}`;
+    });
+    console.log(checkoutBill);
+    purchaseBtn.addEventListener('click', (e)=>{
+
+            employeeDetail.totalBill=pricingCategory[pricingOption.selectedIndex].children[1].innerHTML+" "+pricingCategory[pricingOption.selectedIndex].children[2].innerHTML;
+            if(targetValue){
+                successAlert(checkoutBill);
+                console.log(e.target.value + " success ");
+            }
+            else{
+                successAlert('Failed... Please choose a package');
+            }
+    });
+    
+
+}
