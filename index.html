@@ -50,13 +50,8 @@
             <div class="expandable-content">
                 <form class="employee-form">
                     <div class="form-group">
-                        <label for="firstname">First Name:</label>
-                        <input type="text" id="firstname" name="firstname" placeholder="" required>
-                        <input type="button" value="Submit">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Last Name:</label>
-                        <input type="text" id="lastname" name="lastname" placeholder="" required>
+                        <label for="fullname">Enter name:</label>
+                        <input class="input-field" type="text" id="fullname" name="fullname" placeholder="" required>
                         <input type="button" value="Submit">
                     </div>
                     <div class="form-group" id="gender">
@@ -70,22 +65,22 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="email" name="email" placeholder="example@gmail.com" required>
+                        <input class="input-field" type="email" class="email" name="email" placeholder="example@gmail.com" required>
                         <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="" required>
+                        <input class="input-field" type="password" id="password" name="password" placeholder="" required>
                         <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="confirm-password">Confirm Password:</label>
-                        <input type="password" id="confirm-password" name="" placeholder="" required>
+                        <input class="input-field" type="password" id="confirm-password" name="" placeholder="" required>
                             <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="contact">Contact Number:</label>
-                        <input type="text" id="contact" name="contact" placeholder="9876543210" required>
+                        <input class="input-field" type="text" id="contact" name="contact" placeholder="" required>
                         <input type="button" value="Submit">
                     </div>
                     <div class="success-message"></div>
@@ -106,12 +101,12 @@
                 <form class="vehicle-form">
                     <div class="form-group">
                         <label for="company">Please Enter Vehicle company:</label>
-                        <input type="text" id="company" name="company" placeholder="" required>
+                        <input class="input-field" type="text" id="company" name="company" placeholder="" required>
                         <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="vehicle-model">Vehicle Model:</label>
-                        <input type="text" id="vehicle-model" name="model" placeholder="" required>
+                        <input class="input-field" type="text" id="vehicle-model" name="model" placeholder="" required>
                         <input type="button" value="Submit">
                     </div>
                     <div class="form-group" id= "vehicle-type">
@@ -125,17 +120,17 @@
                     </div>
                     <div class="form-group">
                         <label for="vehicle-number">Vehicle Number:</label>
-                        <input type="text" id="vehicle-number" name="vehicle-number" placeholder="" required>
+                        <input class="input-field" type="text" id="vehicle-number" name="vehicle-number" placeholder="" required>
                         <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="emp-id">Employee ID:</label>
-                        <input type="text" id="emp-id" name="emp-id" placeholder="" required>
+                        <input class="input-field" type="text" id="emp-id" name="emp-id" placeholder="" required>
                         <input type="button" value="Submit">
                     </div>
                     <div class="form-group">
                         <label for="identification">Identification:</label>
-                        <textarea type="textarea" id="identification" name="identification" placeholder="Identification mark" rows="4" cols="38"></textarea>
+                        <textarea class="input-field" type="text" id="identification" name="identification" placeholder="Identification mark" rows="4" cols="38"></textarea>
                         <input type="button" value="Submit">
                     </div>
                     <div class="success-message"></div>
@@ -185,9 +180,11 @@
                     </div>
                 </div>
                 <div class="pricing-type">
+                    <label for="pricing-list">Please choose a plan: </label>
                     <select name="pricing-option" id="pricingOption">
+                        <option value="">Select one</option>
                         <option value="daily">Daily 5 $</option>
-                        <option value="monthly">Monthly 100 $</option>
+                        <option value="monthly" selected>Monthly 100 $</option>
                         <option value="yearly">Yearly 500 $</option>
                     </select>
                 </div>
@@ -217,9 +214,11 @@
                     </div>
                 </div>
                 <div class="pricing-type">
+                    <label for="pricing-list">Please choose a plan: </label>
                     <select name="pricing-option" id="pricingOption">
+                        <option value="">Select one</option>
                         <option value="daily">Daily 10 $</option>
-                        <option value="monthly">Monthly 200 $</option>
+                        <option value="monthly" selected>Monthly 200 $</option>
                         <option value="yearly">Yearly 1000 $</option>
                     </select>
                 </div>
@@ -249,9 +248,11 @@
                     </div>
                 </div>
                 <div class="pricing-type">
+                    <label for="pricing-list">Please choose a plan: </label>
                     <select name="pricing-option" id="pricingOption">
+                        <option value="">Select one</option>
                         <option value="daily">Daily 20 $</option>
-                        <option value="monthly">Monthly 500 $</option>
+                        <option value="monthly" selected>Monthly 500 $</option>
                         <option value="yearly">Yearly 3500 $</option>
                     </select>
                 </div>

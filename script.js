@@ -8,7 +8,7 @@ const navItem = document.querySelectorAll('.mobile-screen .navItem');
 // objects of employee and vehicle 
 const employeeDetail = {};
 const vehicleDetail = {};
-let empName = ""; // emp first name
+let empName = ""; // emp name
 
 //toggle to expande and collapse employee and vehicle section
 function toggleSection(sectionName) {
@@ -39,16 +39,11 @@ function navigateToSection(selectElement) {
 
 // validate inputs
 
-function validateFirstName(name) {
+function validateFullName(name) {
     const fullNameRegex = /^[a-zA-Z ]{2,}$/;
     return fullNameRegex.test(name);
 }
 
-function validateLastName(name) {
-    if (name.length == 0) return true;
-    const lastNameRegex = /^[a-zA-Z ]+$/;
-    return lastNameRegex.test(name);
-}
 function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
@@ -115,27 +110,16 @@ function validateEmployeeDetails(currentField, nextField) {
 
     switch (currentField.children[0].htmlFor) {
 
-        case 'firstname':
+        case 'fullname':
             if (currentField.children[1].value === '') alert("Field cannot be empty");
-            if (validateFirstName(currentField.children[1].value)) {
+            if (validateFullName(currentField.children[1].value)) {
                 empName = currentField.children[1].value;
-                employeeDetail.firstName = currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Welcome ' + empName + ',  Please enter your last name';
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid FirstName... Please enter again ';
-                return false;
-            }
-
-        case 'lastname':
-            if (validateLastName(currentField.children[1].value)) {
-                employeeDetail.lastName = currentField.children[1].value;
+                employeeDetail.fullname = currentField.children[1].value;
                 nextField.children[0].innerHTML = 'Hi ' + empName + ', Can I know your Gender';
                 return true;
             }
             else {
-                currentField.children[0].innerHTML = 'Invalid LastName... Please enter again ';
+                currentField.children[0].innerHTML = 'Invalid FirstName... Please enter again ';
                 return false;
             }
 
@@ -219,8 +203,6 @@ function validateVehicleDetails(currentField, nextField) {
                 return false;
             }
 
-
-
         case 'vehicle-model':
             if (validateText(currentField.children[1].value)) {
                 vehicleDetail.model = currentField.children[1].value;
@@ -232,8 +214,6 @@ function validateVehicleDetails(currentField, nextField) {
                 return false;
             }
 
-
-
         case 'vehicle-type':
             if (validateText(currentField.children[1].value)) {
                 vehicleDetail.type = currentField.children[1].value;
@@ -241,8 +221,6 @@ function validateVehicleDetails(currentField, nextField) {
                 return true;
             }
             else return false;
-
-
 
         case 'vehicle-number':
             if (validateVehicleNumber(currentField.children[1].value)) {
@@ -254,7 +232,6 @@ function validateVehicleDetails(currentField, nextField) {
                 currentField.children[0].innerHTML = 'Invalid vehicle number... Please enter again ';
                 return false;
             }
-
 
         case 'emp-id':
             if (validateEmpId(currentField.children[1].value)) {
@@ -268,8 +245,6 @@ function validateVehicleDetails(currentField, nextField) {
                 return false;
             }
 
-
-
         case 'identification':
             if (validateText(currentField.children[1].value)) {
                 vehicleDetail.identification = currentField.children[1].value;
@@ -280,17 +255,20 @@ function validateVehicleDetails(currentField, nextField) {
                 return false;
             }
 
-
         default: return false;
 
     }
 }
 
+
 //adding event listener to employee forms so that they appear one after the other after validation.
-function displayEmployeeForm() {
+
+function displayEmployeeForm(){
+
     const employee = document.querySelector('#employee-section');
     const formGroup = employee.querySelectorAll('.form-group');
     const input = employee.querySelectorAll('input[type=button]');
+    const inputField = employee.querySelectorAll('.input-field');
     const select = employee.querySelector('select');
     const options = select.querySelectorAll('option');
 
@@ -302,23 +280,47 @@ function displayEmployeeForm() {
 
     for (let i = 0, j = 0; i < formGroup.length && j < input.length; i++) {
 
+    
+
         if (formGroup[i].id != 'gender') {
 
-            input[j].addEventListener('click', () => {
+            inputField[j].addEventListener('keydown',(e) => {
 
-                if (i + 1 < formGroup.length) {
-                    if (validateEmployeeDetails(formGroup[i], formGroup[i + 1])) {
-                        formGroup[i + 1].style.display = 'block';
-                        formGroup[i].style.display = 'none';
+                if(e.key ==='Enter'){
+                    if (i + 1 < formGroup.length) {
+                        if (validateEmployeeDetails(formGroup[i], formGroup[i + 1])) {
+                            formGroup[i + 1].style.display = 'block';
+                            formGroup[i].style.display = 'none';
+                        }
+                    }
+                    else {
+                        if (validateEmployeeDetails(formGroup[i])) {
+                            expandableContent[0].classList.toggle('active');
+                            bodyContainer[0].classList.toggle('add-space');
+                            alert(`Successfully Registered!`);
+                        }
                     }
                 }
-                else {
-                    if (validateEmployeeDetails(formGroup[i])) {
-                        expandableContent[0].classList.toggle('active');
-                        bodyContainer[0].classList.toggle('add-space');
-                        alert(`Successfully Registered!`);
+                
+
+            });
+
+
+            input[j].addEventListener('click', () => {
+               
+                    if (i + 1 < formGroup.length) {
+                        if (validateEmployeeDetails(formGroup[i], formGroup[i + 1])) {
+                            formGroup[i + 1].style.display = 'block';
+                            formGroup[i].style.display = 'none';
+                        }
                     }
-                }
+                    else {
+                        if (validateEmployeeDetails(formGroup[i])) {
+                            expandableContent[0].classList.toggle('active');
+                            bodyContainer[0].classList.toggle('add-space');
+                            alert(`Successfully Registered!`);
+                        }
+                    }
 
             });
             console.log("input field " + j);
@@ -326,25 +328,8 @@ function displayEmployeeForm() {
 
         }
 
-        
-
         if (formGroup[i].children[1].id == 'password') {
-            formGroup[i].children[1].addEventListener('change', (e) => {
-                // const password = formGroup[i].children[1].value;
-                if (checkPasswordStrength(e.target.value) >= 5) {
-                    formGroup[i].children[1].style.border = '2px solid green'
-                }
-                else if (checkPasswordStrength(e.target.value) >= 4) {
-                    formGroup[i].children[1].style.border = '2px solid orange'
-                }
-                else {
-                    formGroup[i].children[1].style.border = '2px solid red';
-                }
 
-            });
-        }
-
-        if (formGroup[i].children[1].id == 'password') {
             formGroup[i].children[1].addEventListener('change', (e) => {
                 // const password = formGroup[i].children[1].value;
                 if (checkPasswordStrength(e.target.value) >= 5) {
@@ -371,9 +356,10 @@ function displayEmployeeForm() {
         }
 
     }
-
 }
 displayEmployeeForm();
+
+
 
 
 //adding event listener to vehicle forms so that they appear one after the other after validation.
@@ -381,6 +367,7 @@ function displayVehicleForm() {
     const vehicle = document.querySelector('#vehicle-section');
     const formGroup = vehicle.querySelectorAll('.form-group');
     const input = vehicle.querySelectorAll('input[type=button]');
+    const inputField = vehicle.querySelectorAll('.input-field');
     const select = vehicle.querySelector('select');
     const options = select.querySelectorAll('option');
     const pricingItem = document.querySelectorAll('#pricing .pricing-item');
@@ -398,25 +385,52 @@ function displayVehicleForm() {
 
         if (formGroup[i].id != 'vehicle-type') {
 
+            inputField[j].addEventListener('keydown',(e) => {
+
+                if(e.key==='Enter'){
+                    if (i + 1 < formGroup.length) {
+                        if (validateVehicleDetails(formGroup[i], formGroup[i + 1])) {
+                            formGroup[i + 1].style.display = 'block';
+                            formGroup[i].style.display = 'none';
+    
+                        }
+    
+                    }
+                    // last form group when the user enters last field
+                    else {
+                        if (validateVehicleDetails(formGroup[i])) {
+                            vehicleDetail.tokenNumber = generateRandomString(4, numericString);
+                            expandableContent[1].classList.toggle('active');
+                            bodyContainer[1].classList.toggle('add-space');
+                            successMessage=`Successfully registered your RegistrationId is : ${vehicleDetail.tokenNumber}`;
+                            successAlert(successMessage);
+                        }
+                    }
+                }
+                
+            });
+
             input[j].addEventListener('click', () => {
-                if (i + 1 < formGroup.length) {
-                    if (validateVehicleDetails(formGroup[i], formGroup[i + 1])) {
-                        formGroup[i + 1].style.display = 'block';
-                        formGroup[i].style.display = 'none';
 
+                    if (i + 1 < formGroup.length) {
+                        if (validateVehicleDetails(formGroup[i], formGroup[i + 1])) {
+                            formGroup[i + 1].style.display = 'block';
+                            formGroup[i].style.display = 'none';
+    
+                        }
+    
                     }
-
-                }
-                // last form group when the user enters last field
-                else {
-                    if (validateVehicleDetails(formGroup[i])) {
-                        vehicleDetail.tokenNumber = generateRandomString(4, numericString);
-                        expandableContent[1].classList.toggle('active');
-                        bodyContainer[1].classList.toggle('add-space');
-                        successMessage=`Successfully registered your token number is : ${vehicleDetail.tokenNumber}`;
-                        successAlert(successMessage);
+                    // last form group when the user enters last field
+                    else {
+                        if (validateVehicleDetails(formGroup[i])) {
+                            vehicleDetail.tokenNumber = generateRandomString(4, numericString);
+                            expandableContent[1].classList.toggle('active');
+                            bodyContainer[1].classList.toggle('add-space');
+                            successMessage=`Successfully registered your token number is : ${vehicleDetail.tokenNumber}`;
+                            successAlert(successMessage);
+                        }
                     }
-                }
+                
             });
             j++;
         }
@@ -489,7 +503,7 @@ function updateCurrency(pricingItem) {
             const price = pricingCategory[i].children[1].innerHTML;
             pricingCategory[i].children[1].innerHTML = Math.round(((toRate / fromRate) * price));
             convertSymbols(resultTo, i);
-            pricingOption[i].innerHTML=pricingTenure[i]+" "+pricingCategory[i].children[1].innerHTML+" "+pricingCategory[i].children[2].innerHTML;
+            pricingOption[i+1].innerHTML=pricingTenure[i]+" "+pricingCategory[i].children[1].innerHTML+" "+pricingCategory[i].children[2].innerHTML;
             console.log(price);
         }
 
@@ -562,12 +576,12 @@ function purchaseItem(selectedItem){
     pricingOption.addEventListener('change',(e)=>{
         console.log(pricingOption.selectedIndex);
         targetValue=e.target.value;
-        checkoutBill=`Hey ${employeeDetail.firstName}, <br> Your total Bill is ${pricingCategory[pricingOption.selectedIndex].children[1].innerHTML} ${pricingCategory[pricingOption.selectedIndex].children[2].innerHTML}`;
+        checkoutBill=`Hey ${employeeDetail.firstName}, <br> Your total Bill is ${pricingCategory[pricingOption.selectedIndex-1].children[1].innerHTML} ${pricingCategory[pricingOption.selectedIndex-1].children[2].innerHTML}`;
     });
     console.log(checkoutBill);
     purchaseBtn.addEventListener('click', (e)=>{
 
-            employeeDetail.totalBill=pricingCategory[pricingOption.selectedIndex].children[1].innerHTML+" "+pricingCategory[pricingOption.selectedIndex].children[2].innerHTML;
+            employeeDetail.totalBill=pricingCategory[pricingOption.selectedIndex-1].children[1].innerHTML+" "+pricingCategory[pricingOption.selectedIndex-1].children[2].innerHTML;
             if(targetValue){
                 successAlert(checkoutBill);
                 console.log(e.target.value + " success ");
