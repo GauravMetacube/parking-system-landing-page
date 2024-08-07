@@ -576,7 +576,7 @@ function purchaseItem(selectedItem){
     pricingOption.addEventListener('change',(e)=>{
         console.log(pricingOption.selectedIndex);
         targetValue=e.target.value;
-        checkoutBill=`Hey ${employeeDetail.firstName}, <br> Your total Bill is ${pricingCategory[pricingOption.selectedIndex-1].children[1].innerHTML} ${pricingCategory[pricingOption.selectedIndex-1].children[2].innerHTML}`;
+        checkoutBill=`Hey ${employeeDetail.fullname}, <br> Your total Bill is ${pricingCategory[pricingOption.selectedIndex-1].children[1].innerHTML} ${pricingCategory[pricingOption.selectedIndex-1].children[2].innerHTML}`;
     });
     console.log(checkoutBill);
     purchaseBtn.addEventListener('click', (e)=>{
