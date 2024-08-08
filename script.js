@@ -370,8 +370,6 @@ function displayEmployeeForm(){
 
     for (let i = 0, j = 0; i < formGroup.length && j < input.length; i++) {
 
-    
-
         if (formGroup[i].id != 'gender') {
 
             inputField[j].addEventListener('keydown',(e) => {
@@ -388,8 +386,11 @@ function displayEmployeeForm(){
                         if (validateEmployeeDetails(formGroup[i])) {
                             expandableContent[0].classList.toggle('active');
                             bodyContainer[0].classList.toggle('add-space');
+                            formGroup[i].style.display = 'none';
                             employeeDetail.regId = generateRandomString(4, numericString);
                             successMessage=`Successfully registered your RegistrationId is : ${employeeDetail.regId}`;
+                            const successDiv = employee.querySelector('.success-message');
+                            successDiv.innerHTML=`<h1>Successfully registered your RegistrationId is : ${employeeDetail.regId}</h1>`;
                             successAlert(successMessage);
                         }
                     }
@@ -411,8 +412,12 @@ function displayEmployeeForm(){
                         if (validateEmployeeDetails(formGroup[i])) {
                             expandableContent[0].classList.toggle('active');
                             bodyContainer[0].classList.toggle('add-space');
+                            formGroup[i].style.display = 'none';
                             employeeDetail.regId = generateRandomString(4, numericString);
                             successMessage=`Successfully registered your RegistrationId is : ${employeeDetail.regId}`;
+                            successAlert(successMessage);
+                            const successDiv = employee.querySelector('.success-message');
+                            successDiv.innerHTML=`<h1>Successfully registered your RegistrationId is : ${employeeDetail.regId}</h1>`;
                             successAlert(successMessage);
                         }
                     }
@@ -425,16 +430,24 @@ function displayEmployeeForm(){
 
         if (formGroup[i].children[1].id == 'password') {
 
+            const errorMessage = formGroup[i].querySelector('p');
+
             formGroup[i].children[1].addEventListener('change', (e) => {
                 // const password = formGroup[i].children[1].value;
                 if (checkPasswordStrength(e.target.value) >= 5) {
                     formGroup[i].children[1].style.border = '2px solid green'
+                    errorMessage.innerHTML='password is strong';
+                    errorMessage.style.color='green';
                 }
                 else if (checkPasswordStrength(e.target.value) >= 4) {
                     formGroup[i].children[1].style.border = '2px solid orange'
+                    errorMessage.innerHTML='password is normal';
+                    errorMessage.style.color='orange';
                 }
                 else {
                     formGroup[i].children[1].style.border = '2px solid red';
+                    errorMessage.innerHTML='password is weak';
+                    errorMessage.style.color='red';
                 }
 
             });
@@ -494,7 +507,6 @@ function displayVehicleForm() {
                         if (validateVehicleDetails(formGroup[i], formGroup[i + 1])) {
                             formGroup[i + 1].style.display = 'block';
                             formGroup[i].style.display = 'none';
-    
                         }
     
                     }
@@ -503,6 +515,9 @@ function displayVehicleForm() {
                         if (validateVehicleDetails(formGroup[i])) {
                             expandableContent[1].classList.toggle('active');
                             bodyContainer[1].classList.toggle('add-space');
+                            formGroup[i].style.display = 'none';
+                            const successDiv = vehicle.querySelector('.success-message');
+                            successDiv.innerHTML=`<h1> Vehicle registered successfully, visit price section below</h1>`;
                             navigateToSection(navItem[3]); //navigate to pricing section
                         }
                     }
@@ -525,6 +540,9 @@ function displayVehicleForm() {
                         if (validateVehicleDetails(formGroup[i])) {
                             expandableContent[1].classList.toggle('active');
                             bodyContainer[1].classList.toggle('add-space');
+                            formGroup[i].style.display = 'none';
+                            const successDiv = vehicle.querySelector('.success-message');
+                            successDiv.innerHTML=`<h3> Vehicle registered successfully, visit price section below</h3>`;
                             navigateToSection(navItem[3]); //navigate to pricing section
                         }
                     }
