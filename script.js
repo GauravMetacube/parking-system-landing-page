@@ -109,7 +109,7 @@ function validateEmployeeDetails(currentField,nextField) {
 
     const inputValue = currentField.children[1];
     const value = inputValue.value;
-
+    //get error message div to show invalid input messages
     const errorMessage = currentField.querySelector('p');
     errorMessage.style.color='red';
     console.log(labelName);
@@ -238,6 +238,7 @@ function validateVehicleDetails(currentField, nextField) {
     const inputValue = currentField.children[1];
     const value= inputValue.value;
 
+     //get error message div to show invalid input messages
     const errorMessage = currentField.querySelector('p');
     errorMessage.style.color='red';
 
@@ -571,10 +572,7 @@ function displayVehicleForm() {
 }
 displayVehicleForm();
 
-
-
-
-
+// update currency according to selected vehicle
 function updateCurrency(pricingItem) {
 
     const currencyMenuDiv = document.querySelector('.currency-convertor');
@@ -600,7 +598,7 @@ function updateCurrency(pricingItem) {
         console.log('event listener success');
     });
 
-    // Function getresults
+    // Function getresults will fetch currency rate from api
     function getResults() {
         fetch(`${api}`)
             .then(currency => {
