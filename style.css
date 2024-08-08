@@ -159,7 +159,7 @@ section {
     width: 100%;
 }
 .employee-form, .vehicle-form, .feedback-form{
-    max-width: 200px;
+    max-width: 250px;
 }
 
 @media screen and (max-width:767px) {
@@ -178,7 +178,7 @@ section {
 .form-group input[type="text"], 
 .form-group input[type="email"], 
 .form-group input[type="password"] {
-    width: 180%;
+    width: 150%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -242,12 +242,15 @@ label {
 }
 
 select {
-    width: 240%;
+    width: 150%;
     padding: 10px;
     font-size: 1em;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: white;
+}
+#vehicle-section select{
+    width: 200%;
 }
 
 /* Hover and focus styles */

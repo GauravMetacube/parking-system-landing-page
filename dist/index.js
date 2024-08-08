@@ -1,9 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-console.log("hello world");
 var Employee = /** @class */ (function () {
     function Employee() {
-        this.regId = employee.counter++;
+        this.regId = Employee.counter++;
         this.empId = "";
         this.fullName = "";
         this.gender = "";

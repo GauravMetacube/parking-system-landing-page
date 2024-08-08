@@ -103,75 +103,120 @@ function generateRandomString(length, chars) {
 // at the same time we will store the details into employee object
 // here children[0] is label of that form
 // and children[1] is the input of that form
-function validateEmployeeDetails(currentField, nextField) {
-    console.log(currentField.children[0].htmlFor);
-    console.log(currentField.children[1].value);
+function validateEmployeeDetails(currentField,nextField) {
+    const label = currentField.children[0];
+    const labelName = label.htmlFor;
+
+    const inputValue = currentField.children[1];
+    const value = inputValue.value;
+
+    const errorMessage = currentField.querySelector('p');
+    errorMessage.style.color='red';
+    console.log(labelName);
+    console.log(value);
 
 
-    switch (currentField.children[0].htmlFor) {
+    switch (labelName) {
 
         case 'fullname':
-            if (currentField.children[1].value === '') alert("Field cannot be empty");
-            if (validateFullName(currentField.children[1].value)) {
-                empName = currentField.children[1].value;
-                employeeDetail.fullname = currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Hi ' + empName + ', Can I know your Gender';
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid FirstName... Please enter again ';
+            {
+                if (value === '') {
+                   errorMessage.innerHTML = 'field cannot be empty';
+                }
+                else if(value.length<2){
+                    errorMessage.innerHTML = "Name should be more than 1 character";
+                }
+                else if (validateFullName(value)) {
+                    empName = value;
+                    employeeDetail.fullName=value;
+                    nextField.children[0].innerHTML = 'Hi ' + empName + ', Can I know your Gender';
+                    return true;
+                }
+                else{
+                    errorMessage.innerHTML= 'Invalid Name... Please enter again ';
+                }
                 return false;
             }
 
         case 'gender':
-            employeeDetail.gender = currentField.children[1].value;
-            nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter your Email';
-            return true;
-
-
+            {
+                if(value){
+                    employeeDetail.gender = value;
+                    nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter your Email';
+                    return true;
+                }
+                else{
+                    errorMessage.innerHTML='Select one of the option.';
+                    return false;
+                }
+            }
+            
         case 'email':
-            if (currentField.children[1].value === '') alert("Field cannot be empty");
-            if (validateEmail(currentField.children[1].value)) {
-                employeeDetail.email = currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter a password';
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid Email... Please enter again ';
+            {
+                if (value === '') {
+                    errorMessage.innerHTML="Field cannot be empty";
+                }
+                else if(validateEmail(value)) {
+                    employeeDetail.email=value;
+                    nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter a password';
+                    return true;
+                }
+                else{
+                    errorMessage.innerHTML='Invalid Email... Please enter again ';
+                }
                 return false;
             }
-
+        
         case 'password':
-            if (currentField.children[1].value === '') alert("Field cannot be empty");
-            if (validatePassword(currentField.children[1].value)) {
-                employeeDetail.password = currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Hi ' + empName + 'Confirm your password';
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid password... Please enter again ';
+            {
+                if (value === '') {
+                    errorMessage.innerHTML="Field cannot be empty";
+                }
+                else if(value.length < 8) {
+                    errorMessage.innerHTML='Password length is insuffucient';
+                }
+                else if(validatePassword(value) && checkPasswordStrength(value)>=5 ){
+                   employeeDetail.password=value;
+                    nextField.children[0].innerHTML = 'Confirm your password';
+                    return true;
+                }
+                else if(checkPasswordStrength(value)<5){
+                    errorMessage.innerHTML='Password is too weak';
+                }
+                else{
+                    errorMessage.innerHTML='Invalid password... Please enter again';
+                }
                 return false;
             }
-
 
         case 'confirm-password':
-            if (validateConfirmPassword(currentField.children[1].value)) {
-                nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter your phone number';
-                return true;
+            {
+                if (validateConfirmPassword(value)) {
+                    nextField.children[0].innerHTML = 'Hi ' + empName + ', Enter your phone number';
+                    return true;
+                }
+                else {
+                    errorMessage.innerHTML='Password do not match, please try again ';
+                    return false;
+                }
             }
-            else {
-                currentField.children[0].innerHTML = 'Password do not match, please try again ';
-                return false;
-            }
+            
 
         case 'contact':
-            if (currentField.children[1].value === '') alert("Field cannot be empty");
-            if (validateContact(currentField.children[1].value)) {
-                employeeDetail.contact = currentField.children[1].value;
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid phone number... Please enter again ';
+            {
+                if (value === '') {
+                    errorMessage.innerHTML="Field cannot be empty";
+                }
+                else if(value.length<8 || value.length>15) {
+                    errorMessage.innerHTML="Number is too small or too long";
+                }
+                else if(validateContact(value)){
+                    employeeDetail.contact=value;
+                    return true;
+                }
+                else{
+                    errorMessage.innerHTML='Invalid phone number... Please enter again';
+                }
                 return false;
             }
 
@@ -186,72 +231,111 @@ function validateEmployeeDetails(currentField, nextField) {
 // here children[0] is label of that form
 // and children[1] is the input of that form
 function validateVehicleDetails(currentField, nextField) {
-    console.log(currentField.children[0].htmlFor);
-    console.log(currentField.children[1].value);
 
+    const label = currentField.children[0];
+    const labelName = label.htmlFor;
 
-    switch (currentField.children[0].htmlFor) {
+    const inputValue = currentField.children[1];
+    const value= inputValue.value;
+
+    const errorMessage = currentField.querySelector('p');
+    errorMessage.style.color='red';
+
+    console.log(labelName);
+    console.log(value);
+
+    switch (labelName) {
 
         case 'company':
-            if (validateText(currentField.children[1].value)) {
-                vehicleDetail.company = currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Please Enter vehicle-model ';
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid Company name... Please enter again ';
+            {
+                if (value === '') {
+                    errorMessage.innerHTML="Field cannot be empty";
+                }
+                else if (validateText(value)) {
+                    vehicleDetail.company = value;
+                    nextField.children[0].innerHTML = 'Please Enter vehicle-model ';
+                    return true;
+                }
+                else {
+                    errorMessage.innerHTML = 'Invalid Company name... Please enter again ';
+                }
                 return false;
             }
+            
 
         case 'vehicle-model':
-            if (validateText(currentField.children[1].value)) {
-                vehicleDetail.model = currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Select Vehicle Type';
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid vehicle model... Please enter again ';
+            {
+                if (value === '') {
+                    errorMessage.innerHTML="Field cannot be empty";
+                }
+                else if (validateText(value)) {
+                    vehicleDetail.model = value;
+                    nextField.children[0].innerHTML = 'Select Vehicle Type';
+                    return true;
+                }
+                else {
+                    errorMessage.innerHTML = 'Invalid vehicle model... Please enter again ';
+                }
                 return false;
             }
-
+            
         case 'vehicle-type':
-            if (validateText(currentField.children[1].value)) {
-                vehicleDetail.type = currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Enter vehicle Number';
-                return true;
+            {
+                if (validateText(value)) {
+                    vehicleDetail.type = value;
+                    nextField.children[0].innerHTML = 'Enter vehicle Number';
+                    return true;
+                }
+                else return false;
             }
-            else return false;
 
         case 'vehicle-number':
-            if (validateVehicleNumber(currentField.children[1].value)) {
-                vehicleDetail.number = currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Enter Employee Id ';
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid vehicle number... Please enter again ';
+            {
+                if (value === '') {
+                    errorMessage.innerHTML="Field cannot be empty";
+                }
+                else if (validateVehicleNumber(value)) {
+                    vehicleDetail.number = value;
+                    nextField.children[0].innerHTML = 'Enter Employee Id ';
+                    return true;
+                }
+                else {
+                    errorMessage.innerHTML = 'Invalid vehicle number... Please enter again ';
+                }
                 return false;
             }
+            
 
         case 'emp-id':
-            if (validateEmpId(currentField.children[1].value)) {
-                vehicleDetail.empId = currentField.children[1].value;
-                employeeDetail.empId=  currentField.children[1].value;
-                nextField.children[0].innerHTML = 'Provide any identification';
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid Employee id... Please enter again ';
+            {
+                if (value === '') {
+                    errorMessage.innerHTML="Field cannot be empty";
+                }
+                else if (validateEmpId(value)) {
+                    vehicleDetail.empId = value;
+                    employeeDetail.empId=  value;
+                    nextField.children[0].innerHTML = 'Provide any identification';
+                    return true;
+                }
+                else {
+                    errorMessage.innerHTML = 'Invalid Employee id... Please enter again ';
+                    
+                }
                 return false;
             }
-
+            
         case 'identification':
-            if (validateText(currentField.children[1].value)) {
-                vehicleDetail.identification = currentField.children[1].value;
-                return true;
-            }
-            else {
-                currentField.children[0].innerHTML = 'Invalid Identification... Please enter again ';
+            {
+                if (value === '') {
+                    errorMessage.innerHTML="Field cannot be empty";
+                }
+                else if (validateText(value)) {
+                    vehicleDetail.identification = value;
+                    return true;
+                }
+                else {
+                    currentField.children[0].innerHTML = 'Invalid Identification... Please enter again ';
+                }
                 return false;
             }
 
@@ -277,6 +361,12 @@ function displayEmployeeForm(){
         formGroup[i].style.display = 'none';
     }
 
+    //creating a paragraph element for error message
+    formGroup.forEach((element)=>{
+        const error = document.createElement('p');
+        element.append(error);
+    });
+
 
     for (let i = 0, j = 0; i < formGroup.length && j < input.length; i++) {
 
@@ -287,6 +377,7 @@ function displayEmployeeForm(){
             inputField[j].addEventListener('keydown',(e) => {
 
                 if(e.key ==='Enter'){
+                    
                     if (i + 1 < formGroup.length) {
                         if (validateEmployeeDetails(formGroup[i], formGroup[i + 1])) {
                             formGroup[i + 1].style.display = 'block';
@@ -297,7 +388,9 @@ function displayEmployeeForm(){
                         if (validateEmployeeDetails(formGroup[i])) {
                             expandableContent[0].classList.toggle('active');
                             bodyContainer[0].classList.toggle('add-space');
-                            alert(`Successfully Registered!`);
+                            employeeDetail.regId = generateRandomString(4, numericString);
+                            successMessage=`Successfully registered your RegistrationId is : ${employeeDetail.regId}`;
+                            successAlert(successMessage);
                         }
                     }
                 }
@@ -318,7 +411,9 @@ function displayEmployeeForm(){
                         if (validateEmployeeDetails(formGroup[i])) {
                             expandableContent[0].classList.toggle('active');
                             bodyContainer[0].classList.toggle('add-space');
-                            alert(`Successfully Registered!`);
+                            employeeDetail.regId = generateRandomString(4, numericString);
+                            successMessage=`Successfully registered your RegistrationId is : ${employeeDetail.regId}`;
+                            successAlert(successMessage);
                         }
                     }
 
@@ -373,6 +468,7 @@ function displayVehicleForm() {
     const pricingItem = document.querySelectorAll('#pricing .pricing-item');
 
 
+
     for (let i = 1; i < formGroup.length; i++) {
         formGroup[i].style.display = 'none';
     }
@@ -380,6 +476,12 @@ function displayVehicleForm() {
     for (let i = 0; i < pricingItem.length; i++) {
         pricingItem[i].style.display = 'none';
     }
+
+      //creating a paragraph element for error message
+      formGroup.forEach((element)=>{
+        const error = document.createElement('p');
+        element.append(error);
+    });
 
     for (let i = 0, j = 0; i < formGroup.length && j < input.length; i++) {
 
@@ -399,11 +501,9 @@ function displayVehicleForm() {
                     // last form group when the user enters last field
                     else {
                         if (validateVehicleDetails(formGroup[i])) {
-                            vehicleDetail.tokenNumber = generateRandomString(4, numericString);
                             expandableContent[1].classList.toggle('active');
                             bodyContainer[1].classList.toggle('add-space');
-                            successMessage=`Successfully registered your RegistrationId is : ${vehicleDetail.tokenNumber}`;
-                            successAlert(successMessage);
+                            navigateToSection(navItem[3]); //navigate to pricing section
                         }
                     }
                 }
@@ -423,11 +523,9 @@ function displayVehicleForm() {
                     // last form group when the user enters last field
                     else {
                         if (validateVehicleDetails(formGroup[i])) {
-                            vehicleDetail.tokenNumber = generateRandomString(4, numericString);
                             expandableContent[1].classList.toggle('active');
                             bodyContainer[1].classList.toggle('add-space');
-                            successMessage=`Successfully registered your token number is : ${vehicleDetail.tokenNumber}`;
-                            successAlert(successMessage);
+                            navigateToSection(navItem[3]); //navigate to pricing section
                         }
                     }
                 
@@ -545,14 +643,14 @@ function successAlert(successMessage){
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
        modal.style.display = "none";
-       navigateToSection(navItem[3]); //navigate to pricing section
+    
     }
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none"; 
-        navigateToSection(navItem[3]); //navigate to pricing section
+        
      }
     }
 }

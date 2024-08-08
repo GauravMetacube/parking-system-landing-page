@@ -150,8 +150,8 @@ let newVehicle : Vehicle = new Vehicle();
 let newPass : Pass = new Pass();
 
 // two body container and two expandable content employee detail and vehicle detail
-const expandableContent = document.getElementsByClassName('expandable-content');
-const bodyContainer = document.getElementsByClassName('body-container');
+const expandableContent:HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName('expandable-content') as HTMLCollectionOf<HTMLDivElement>;
+const bodyContainer:HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName('body-container') as HTMLCollectionOf<HTMLDivElement>;
 
 // navItem to navigate to section
 const navItem:NodeListOf<HTMLInputElement> = document.querySelectorAll<HTMLInputElement>('.mobile-screen .navItem');
@@ -301,7 +301,7 @@ function validateEmployeeDetails(currentField : HTMLDivElement, nextField: HTMLD
 
     switch (labelName) {
 
-        case 'fullame':
+        case 'fullname':
             {
                 if (value === '') {
                     alert("Field cannot be empty");
