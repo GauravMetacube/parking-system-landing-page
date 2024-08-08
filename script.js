@@ -433,7 +433,7 @@ function displayEmployeeForm(){
 
             const errorMessage = formGroup[i].querySelector('p');
 
-            formGroup[i].children[1].addEventListener('change', (e) => {
+            formGroup[i].children[1].addEventListener('input', (e) => {
                 // const password = formGroup[i].children[1].value;
                 if (checkPasswordStrength(e.target.value) >= 5) {
                     formGroup[i].children[1].style.border = '2px solid green'
